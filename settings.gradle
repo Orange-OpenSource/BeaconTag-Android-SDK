@@ -1,0 +1,1 @@
+include ':beacontag_sdk', ':beacontag_sdk_example'

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BeaconTag-Android-SDK.iml" filepath="$PROJECT_DIR$/BeaconTag-Android-SDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/beacontag_sdk/beacontag_sdk.iml" filepath="$PROJECT_DIR$/beacontag_sdk/beacontag_sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/beacontag_sdk_example/beacontag_sdk_example.iml" filepath="$PROJECT_DIR$/beacontag_sdk_example/beacontag_sdk_example.iml" />
+    </modules>
+  </component>
+</project>
