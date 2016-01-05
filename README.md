@@ -1,8 +1,8 @@
-# README - BeaconTag-Android-SDK project for Android
+# BeaconTag-Android-SDK project for Android
 -----------------------------
 
 Welcome to BeaconTag-Android-SDK project for Android phones, designed to help you test the BeaconTag SDK.
-BeaconTag-Android-SDK is an Android library with a sample app to set, configure and listen to the connected devices 'Orange Beacon Tag' by Orange.
+BeaconTag-Android-SDK is an Android library with a sample app to set, configure and interact with the connected devices 'Orange Beacon Tag' by Orange.
 
 Please start with the sample associated and edit the variables according to your use cases.
 
@@ -36,11 +36,11 @@ You can also configure the service you want to test (entering or leaving the Ora
 and edit its parameters (typically, the transmission power or the accelerometer value).
 
 To have the configuration of your Orange Beacon Tag updated, you need to build and open the app
-on a compatible smartphone. Then, you need to press down the small button located at the back 
+on a compatible smartphone. Then, press down the small button located at the back 
 of your Orange Beacon Tag, putting it into configuration mode. During this configuration mode, 
-a blue light will flash during some instant and you should see the UUID of your OBT displayed on your phone screen. 
+a blue light will flash during a few moments and you should see the UUID of your OBT displayed on your phone screen. 
 Then, you can test the service by moving it (if you chose the accelerometer mode), leaving or entering 
-the OBT interaction zone or even changing the OBT environment temperature. 
+the OBT interaction zone or even changing the OBT triggered temperature. 
 
 
 Library integration
@@ -58,9 +58,9 @@ Add Beacon For Detection
 To trigger actions as you wish, the Orange Beacon Tag must be properly configured. After the device is configured, you can use it until the configuration is updated. In case you want to configure a device, you should proceed as follows:
 
 To start detection first you need to create `BeaconSettings` object.
-To create `BeaconSettings` object you need to provide into constructor following parameters:
+To create `BeaconSettings` object you need to provide constructor information following parameters:
 
-- **UUID** 32-character hex UUID
+- **UUID** 32-character hexadecimal UUID
 - **Major** 0..65536 integer
 - **Minor** 0..65536 integer
 - **AreaSettings** Enum which describes different behaviors of tag detection handlers. Possible values:
@@ -71,13 +71,13 @@ Most of these parameters can be found behind your Orange Beacon Tag. Do be caref
 You can also set different parameters with appropriate setters:
 
 - **Sleep Delay** Sleep delay in seconds (ranges from 1 to 65535) A value of 0 disables sleeping.
-After Orange Beacon Tag activation because of acceleration or temperature events, the device will 'advertise' for a given period of time, then it will be deactivated. If sleep delay not within the provided range it will be set to 0.
+After Orange Beacon Tag activation because of acceleration or temperature events, the device will 'advertise' for a given period of time, then it will be deactivated. If sleep delay is not within the provided range it will be set to 0.
 By default is 0.
 
-- **Acceleration** The Orange Beacon Tag is activated when its acceleration reaches a given value. The value range is between 0,1569064 m/s² and 156,9064 m/s², if it not within range it will be ignored.
+- **Acceleration** The Orange Beacon Tag is activated when its acceleration reaches a given value. The value range is between 0,1569064 m/s² and 156,9064 m/s², if it is not within range it will be ignored.
 If no value is provided, the accelerometer will be disabled.
 
-- **Tx Power** Orange Beacon Tag's transmitting power in dBm. If it's not set, current device value will be kept.
+- **Tx Power** Orange Beacon Tag's transmitting power in dBm. If it is not set, current device value will be kept.
 Allowed values: -62, -52, -48, -44, -40, -36, -32, -30, -20, -16, -12, -8, -4, 0, 4. 
 If an invalid value is provided, it will be ignored.
 
@@ -85,7 +85,7 @@ If an invalid value is provided, it will be ignored.
 If invalid value is provided, it will be ignored.
 
 - **Temperature** Set Orange Beacon Tag activation when the temperature is within the given range.
-Upper boundary must be greater than or equal to lower boundary, otherwise boundaries will be ignored. Boundaries are inclusive. Both boundaries must lie between -20 and +50 to ensure a smooth behavior of BLE chip. If lower boundary is greater then upper, then both values will be ignored.
+Upper boundary must be greater than or equal to lower boundary, otherwise boundaries will be ignored. Boundaries are inclusive. Both boundaries must lie between -20 and +50 to ensure a smooth behavior of BLE chip. If lower boundary is greater than upper, then both values will be ignored.
 
 Area Settings
 --------------------
@@ -93,8 +93,8 @@ Description of different behaviors of tag detection handlers.
 
 * **ENTER** - event will occur within a few seconds after phone enters beacon area,
 * **EXIT** - event will occur 30 seconds after phone leaves the Orange Beacon Tag area,
-* **APPROACHING** - event will occur within a few seconds after phone enters Immidiate and/or Near Orange Beacon Tag area,
-* **LEAVING** - event will occur after phone leaves Immidiate and/or Near Orange Beacon Tag area within a few seconds if phone in Far area, or after 30 seconds, if beacon is no longer visible for the phone.
+* **APPROACHING** - event will occur within a few seconds after the phone enters Immidiate and/or Near Orange Beacon Tag area,
+* **LEAVING** - event will occur after the phone leaves Immidiate and/or Near the Orange Beacon Tag area within a few seconds if phone in Far area, or after 30 seconds, if the OBT is no longer visible for the phone.
 
 Device Reconfiguration
 --------------------
@@ -103,5 +103,5 @@ If an Orange Beacon Tag appears in configuration mode, it will be reconfigurated
 Event Propagation
 --------------------
 Once an event defined as an Area Settings occurs, LocalBroadcast with
-`BeaconMonitor.TRIGGER_EVENT_ACTION` action will be send, with a `DeviceFootprint` in extras under `BeaconMonitor.DEVICE_FOOTPRINT_TAG` key.
+`BeaconMonitor.TRIGGER_EVENT_ACTION` action will be sent, with a `DeviceFootprint` in extras under `BeaconMonitor.DEVICE_FOOTPRINT_TAG` key.
 
