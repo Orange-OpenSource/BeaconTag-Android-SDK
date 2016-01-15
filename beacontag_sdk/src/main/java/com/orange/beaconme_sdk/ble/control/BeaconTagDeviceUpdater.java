@@ -64,6 +64,7 @@ public class BeaconTagDeviceUpdater extends BLEDeviceGattController {
                                   List<WriteCharacteristicCommand> commands,
                                   boolean allowSkipAdvancedService) {
         super(device, context);
+        Log.i("Updater", "created");
         this.commands = commands;
         this.allowSkipAdvancedService = allowSkipAdvancedService;
         uploadingCompletion = new HashMap<>();
@@ -78,19 +79,20 @@ public class BeaconTagDeviceUpdater extends BLEDeviceGattController {
     }
 
     private void readCharacteristics() {
+        Log.i("Updater", "readCharacteristics");
         for (WriteCharacteristicCommand command : commands) {
+            final UUID characteristicUUID = command.getCharacteristicUUID();
             BluetoothGattService service = getGatt().getService(command.getServiceUUID());
             if (service != null) {
                 BluetoothGattCharacteristic c = service.getCharacteristic(command.getCharacteristicUUID());
                 if (c == null) {
-                    close();
-                    return;
+                    doneUploadingUuid(characteristicUUID);
                 } else {
                     queue(getReadCharacteristicOperation(c));
                 }
             } else if (command.getServiceUUID()
                     .equals(BeaconTagDevice.WAKE_UP_SERVICE_UUID) && allowSkipAdvancedService) {
-                doneUploadingUuid(command.getCharacteristicUUID());
+                doneUploadingUuid(characteristicUUID);
             } else {
                 close();
                 return;
@@ -149,6 +151,7 @@ public class BeaconTagDeviceUpdater extends BLEDeviceGattController {
 
 
     private void onComplete() {
+        Log.i("Updater", "onComplete");
         close();
         Intent intent = new Intent(BLEDeviceManager.ACTION_DEVICE_UPDATED);
         intent.putExtra(BLEDeviceManager.FOOTPRING_TAG, getDevice().getFootprint());
