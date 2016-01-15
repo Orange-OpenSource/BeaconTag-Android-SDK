@@ -29,8 +29,12 @@ public class ExitAreaHandler extends AreaHandler {
     @Override
     protected void onRangeChanged(BLERange oldRange, BLERange newRange) {
         super.onRangeChanged(oldRange, newRange);
-        if (newRange == null) {
+        if (checkCondition(oldRange, newRange)) {
             onFired();
         }
+    }
+
+    public static boolean checkCondition(BLERange oldRange, BLERange newRange) {
+        return newRange == null;
     }
 }

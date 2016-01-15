@@ -21,12 +21,16 @@ public enum AreaSettings {
     /**
      * ENTER - event will occur within a few seconds after phone enters beacon area,
      * EXIT - event will occur after 30 seconds after phone has left the beacon area,
-     * APPROACHING - event will occur within a few seconds after phone enters Immidiate and/or Near beacon area
+     * APPROACHING - event will occur within a few seconds after phone enters Immidiate and/or Near beacon area,
      * LEAVING - event will occur after phone leave Immidiate and/or Near beacon area within a few
-     *           seconds if phone in Far area, or after 30 seconds, if beacon no longer visible to the phone
+     *           seconds if phone in Far area, or after 30 seconds, if beacon no longer visible to the phone,
+     * ENTER_AND_EXIT - event will occur for conditions described either in ENTER or EXIT,
+     * APPROACHING_AND_LEAVING - event will occur for conditions described either in APPROACHING or LEAVING.
      */
     ENTER,
     EXIT,
+    ENTER_AND_EXIT,
     APPROACHING,
-    LEAVING;
+    LEAVING,
+    APPROACHING_AND_LEAVING;
 }

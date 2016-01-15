@@ -101,6 +101,7 @@ public class BeaconTagDeviceUpdater extends BLEDeviceGattController {
     }
 
     private void onReadCharacteristic(BluetoothGattCharacteristic characteristic, BluetoothGatt gatt, int status) {
+        Log.i("Updater", "onReadCharacteristic");
         UUID charUUID = characteristic.getUuid();
         for (WriteCharacteristicCommand command : commands) {
             if (command.getCharacteristicUUID().equals(charUUID)) {

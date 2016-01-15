@@ -4,7 +4,7 @@
 Welcome to BeaconTag-Android-SDK project for Android phones, designed to help you test the BeaconTag SDK.
 BeaconTag-Android-SDK is an Android library with a sample app to set, configure and interact with the connected devices 'Orange Beacon Tag' by Orange.
 
-Please start with the sample associated and edit the variables according to your use cases.
+Please start with the sample associated and edit the variables according to your use cases. The sample allows you to display messages on your phone in beacon's vicinity. Other use cases might be to trigger different phone actions, such as sending an SMS or automatically opening a mobile application. To discover more possible beacon's interactions with your phone, do not hesitate to test our mobile app: "Beacon Connect".
 
 At this time, the downloadable projects are designed for use with Gradle and Android Studio.
 

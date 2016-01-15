@@ -30,9 +30,13 @@ public class ExitNearAreaHandler extends AreaHandler {
     @Override
     protected void onRangeChanged(BLERange oldRange, BLERange newRange) {
         super.onRangeChanged(oldRange, newRange);
-        if ((newRange == null || newRange == BLERange.FAR)
-                && (oldRange == BLERange.NEAR || oldRange == BLERange.IMMIDIATE)) {
+        if (checkCondition(oldRange, newRange)) {
             onFired();
         }
+    }
+
+    public static boolean checkCondition(BLERange oldRange, BLERange newRange) {
+        return (newRange == null || newRange == BLERange.FAR)
+                && (oldRange == BLERange.NEAR || oldRange == BLERange.IMMIDIATE);
     }
 }

@@ -32,10 +32,14 @@ public final class DetectionHandlerFactory {
                 return new EnterAreaHandler(footprint, triggerFiredListener);
             case EXIT:
                 return new ExitAreaHandler(footprint, triggerFiredListener);
+            case ENTER_AND_EXIT:
+                return new EnterAndExitAreaHandler(footprint, triggerFiredListener);
             case APPROACHING:
                 return new EnterNearAreaHandler(footprint, triggerFiredListener);
             case LEAVING:
                 return new ExitNearAreaHandler(footprint, triggerFiredListener);
+            case APPROACHING_AND_LEAVING:
+                return new EnterNearAndExitNearAreaHandler(footprint, triggerFiredListener);
             default:
                 return new EnterAreaHandler(footprint, triggerFiredListener);
         }

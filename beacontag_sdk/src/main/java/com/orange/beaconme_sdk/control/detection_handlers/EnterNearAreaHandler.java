@@ -29,9 +29,13 @@ public class EnterNearAreaHandler extends AreaHandler {
     @Override
     protected void onRangeChanged(BLERange oldRange, BLERange newRange) {
         super.onRangeChanged(oldRange, newRange);
-        if ((oldRange == null || oldRange == BLERange.FAR) 
-                && (newRange == BLERange.NEAR || newRange == BLERange.IMMIDIATE)) {
+        if (checkCondition(oldRange, newRange)) {
             onFired();
         }
+    }
+
+    public static boolean checkCondition(BLERange oldRange, BLERange newRange){
+        return (oldRange == null || oldRange == BLERange.FAR)
+                && (newRange == BLERange.NEAR || newRange == BLERange.IMMIDIATE);
     }
 }

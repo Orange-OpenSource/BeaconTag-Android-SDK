@@ -20,21 +20,16 @@ import com.orange.beaconme_sdk.ble.model.DeviceFootprint;
 /**
  *
  */
-public class EnterAreaHandler extends AreaHandler {
-    public EnterAreaHandler(DeviceFootprint footprint, OnTriggerFiredListener listener) {
+public class EnterNearAndExitNearAreaHandler extends AreaHandler {
+    public EnterNearAndExitNearAreaHandler(DeviceFootprint footprint, OnTriggerFiredListener listener) {
         super(footprint, listener);
     }
 
     @Override
     protected void onRangeChanged(BLERange oldRange, BLERange newRange) {
         super.onRangeChanged(oldRange, newRange);
-        if (checkCondition(oldRange, newRange)) {
+        if (EnterNearAreaHandler.checkCondition(oldRange, newRange) || ExitNearAreaHandler.checkCondition(oldRange, newRange)) {
             onFired();
         }
     }
-
-    public static boolean checkCondition(BLERange oldRange, BLERange newRange){
-        return oldRange == null;
-    }
-
 }
